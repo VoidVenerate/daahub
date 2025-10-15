@@ -1,0 +1,253 @@
+/* ---------------------- */
+/* News Page Container    */
+/* ---------------------- */
+.news-container {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ---------------------- */
+/* Breaking News Section  */
+/* ---------------------- */
+.breaking-news {
+  border: 1px solid var(--primary-color);
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  background: var(--secondary-color);
+  box-shadow: 0 0 10px var(--primary-color);
+  transition: 0.3s ease all;
+}
+
+.breaking-news h2 {
+  color: var(--primary-color);
+  text-shadow: 0 0 8px var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.breaking-item {
+  margin-bottom: 0.4rem;
+}
+
+.breaking-item a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.breaking-item a:hover {
+  color: var(--primary-color);
+  text-shadow: 0 0 10px var(--primary-color);
+}
+
+/* ---------------------- */
+/* Top Headlines          */
+/* ---------------------- */
+.top-headlines h2 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 28px;
+}
+
+.headline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ---------------------- */
+/* News Card Styling      */
+/* ---------------------- */
+.news-card {
+  background: var(--secondary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px var(--primary-color);
+}
+
+.news-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.news-content {
+  padding: 1rem;
+}
+
+.news-content h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.news-content h3 a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.news-content h3 a:hover {
+  color: var(--primary-color);
+  text-shadow: 0 0 8px var(--primary-color);
+}
+
+.news-content p {
+  color: var(--text-color);
+  opacity: 0.85;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.news-meta {
+  font-size: 0.8rem;
+  color: var(--primary-color);
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--primary-color);
+  padding-top: 0.3rem;
+}
+
+.loading {
+  color: var(--primary-color);
+  text-align: center;
+  font-style: italic;
+}
+
+/* ---------------------- */
+/* Responsive Layout      */
+/* ---------------------- */
+@media (max-width: 600px) {
+  .news-container {
+    padding: 1rem;
+  }
+
+  .breaking-news h2,
+  .top-headlines h2 {
+    font-size: 1.2rem;
+  }
+
+  .headline-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* ---------------------- */
+/* 🔥 Breaking News Ticker */
+/* ---------------------- */
+.breaking-news {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  background: var(--secondary-color);
+  color: var(--text-color);
+  border-top: 1px solid var(--primary-color);
+  border-bottom: 1px solid var(--primary-color);
+  padding: 0.6rem 0;
+  box-shadow: 0 0 15px var(--primary-color);
+}
+
+.ticker-title {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-right: 1rem;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 5px var(--primary-color);
+}
+
+.ticker-wrapper {
+  overflow: hidden;
+  flex: 1;
+  position: relative;
+}
+
+.ticker-content {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: ticker-scroll 45s linear infinite;
+}
+
+.ticker-item {
+  display: inline-block;
+  margin-right: 2rem;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.ticker-item:hover {
+  color: var(--primary-color);
+  text-shadow: 0 0 10px var(--primary-color);
+}
+
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+.ticker-wrapper:hover .ticker-content {
+  animation-play-state: paused;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 1rem;
+  font-family: "Rushon Ground", sans-serif;
+}
+
+.page-btn {
+  background: linear-gradient(90deg, #b74bff, #ff00cc);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.page-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #b74bff;
+}
+
+.page-info {
+  color: #b74bff;
+  font-size: 1rem;
+}
+/* Responsive Pagination */
+@media (max-width: 600px) {
+  .page-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .page-info {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,42 @@
+/* ---------------------- */
+/* Light Mode (Default)   */
+/* ---------------------- */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --primary-color: #0d6efd; /* blue for light mode */
+  --secondary-color: #f0f2f5;
+  --glow:none
+}
+
+/* ---------------------- */
+/* Dark Mode (body.dark)  */
+/* ---------------------- */
+body.dark {
+  --bg-color: #000000;
+  --text-color: #f5f5f5;
+  --primary-color: #bb00ff; /* NEON PURPLE */
+  --secondary-color: #1a1a1a;
+}
+
+/* ---------------------- */
+/* Global Styles          */
+/* ---------------------- */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+button {
+  cursor: pointer;
+}
+@font-face {
+  font-family: "Rushon Ground";
+  src: url("./assets/fonts/rushon-ground.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
