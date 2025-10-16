@@ -55,8 +55,8 @@ const CategoryPage = ({searchTerm}) => {
           <div className="category-grid">
             {articles.map((news, index) => (
               <div key={index} className="news-card">
-                {news.urlToImage && (
-                  <img src={news.urlToImage} alt={news.title} />
+                {news.image && (
+                  <img src={news.image} alt={news.title} />
                 )}
                 <div className="news-info">
                   <h3>
