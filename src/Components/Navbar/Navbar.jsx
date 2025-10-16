@@ -5,8 +5,9 @@ import { NavLink } from 'react-router-dom'
 import DarkTheme from '../DarkTheme/DarkTheme'
 import { Search } from 'lucide-react'
 
-const Navbar = () => {
+const Navbar = ({ onSearch }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [query, setQuery] = useState('');
 
   const toggleMenu = () => {
     setMenuOpen((prev) => {
@@ -20,9 +21,13 @@ const Navbar = () => {
     });
   };
   const handleSearch = (e) => {
-    e.preventDefault()
-    console.log('Searching for:', searchQuery)
-    // you can route or call an API here
+    setQuery(e.target.value)
+  }
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    if (query.trim() === '') return;
+    onSearch(query);
+    setMenuOpen(false); // Close menu on search (for mobile)
   }
   return (
     <nav className="navbar">
@@ -111,12 +116,12 @@ const Navbar = () => {
         
       </ul>
       <div className="navbar-actions">
-        <form className="navbar-search" onSubmit={handleSearch}>
+        <form className="navbar-search" onSubmit={handleFormSubmit}>
           <input
             type="text"
-            placeholder="Search news..."
-            // value={searchQuery}
-            // onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search hot topics or trends..."
+            onChange={handleSearch}
+            value={query}
           />
           <button type="submit"><Search size={20} /></button>
         </form>

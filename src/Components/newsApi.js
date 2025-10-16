@@ -63,3 +63,22 @@ const API_KEY = '50f53cd4518d47e1be6462049f82e2da';
             return { articles: [], totalResults: 0 }
         }
     }
+    export const getSearchNews = async (query, page = 1, pageSize = 8) => {
+        try {
+            const response = await axios.get(`${url}/everything`, {
+                params: {
+                    q: query,
+                    apiKey: API_KEY,
+                    page: page,
+                    pageSize: pageSize
+                }
+            })
+            return {
+                articles: response.data.articles,
+                totalResults: response.data.totalResults
+            }
+        } catch (error) {
+            console.error('Error searching news:', error)
+            return { articles: [], totalResults: 0 }
+        }
+    }

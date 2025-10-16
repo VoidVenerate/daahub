@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./CategoryPage.css";
 import { useParams } from "react-router-dom";
-import { getCategoryNews } from "../newsApi";
+import { getCategoryNews, getSearchNews } from "../newsApi";
 
-const CategoryPage = () => {
+const CategoryPage = ({searchTerm}) => {
   const { category } = useParams();
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -14,14 +14,19 @@ const CategoryPage = () => {
   useEffect(() => {
     const fetchCategoryNews = async () => {
       setLoading(true);
-      const data = await getCategoryNews(category, currentPage, articlesPerPage);
+      let data;
+      if (searchTerm && searchTerm.trim() !== '') {
+        data = await getSearchNews(searchTerm, currentPage, articlesPerPage);
+      } else {
+        data = await getCategoryNews(category, currentPage, articlesPerPage);
+      }
       setArticles(data.articles);
       setTotalResults(data.totalResults || 0);
       setLoading(false);
     };
 
     fetchCategoryNews();
-  }, [category, currentPage]);
+  }, [category, currentPage, searchTerm]);
 
   const totalPages = Math.ceil(totalResults / articlesPerPage);
 
@@ -37,7 +42,7 @@ const CategoryPage = () => {
     <div className="category-page">
       <div className="category-title">
         <h2 style={{ fontFamily: "Rushon Ground" }}>
-          {category.charAt(0).toUpperCase() + category.slice(1)} News
+          {searchTerm ? `Results for "${searchTerm}"` : `${category.charAt(0).toUpperCase() + category.slice(1)} News`}
         </h2>
       </div>
 

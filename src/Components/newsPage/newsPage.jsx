@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./newsPage.css";
-import { getBreakingNews, getTopHeadlines } from "../newsApi";
+import { getBreakingNews, getTopHeadlines, getSearchNews } from "../newsApi";
 
-const NewsPage = () => {
+const NewsPage = ({searchTerm}) => {
   const [topHeadlines, setTopHeadlines] = useState([]);
   const [breakingNews, setBreakingNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,7 +13,12 @@ const NewsPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const headlinesData = await getTopHeadlines("us", currentPage, articlesPerPage);
+      let headlinesData;
+      if (searchTerm && searchTerm.trim() !== '') {
+        headlinesData = await getSearchNews(searchTerm, currentPage, articlesPerPage);
+      } else {
+        headlinesData = await getTopHeadlines('us', currentPage, articlesPerPage);
+      }
       setTopHeadlines(headlinesData.articles);
       setTotalResults(headlinesData.totalResults || 0);
 
@@ -22,7 +27,7 @@ const NewsPage = () => {
       setLoading(false);
     };
     fetchData();
-  }, [currentPage]);
+  }, [currentPage, searchTerm]);
 
   const totalPages = Math.ceil(totalResults/ articlesPerPage);
 
@@ -64,7 +69,7 @@ const NewsPage = () => {
 
       {/* 📰 Top Headlines Grid */}
       <section className="top-headlines">
-        <h2 style={{ fontFamily: "Rushon Ground" }}>Top Headlines</h2>
+        <h2 style={{ fontFamily: "Rushon Ground" }}>{searchTerm ? `Results for "${searchTerm}"` : "Top Headlines"}</h2>
         {topHeadlines.length === 0 ? (
           <p className="loading">Loading...</p>
         ) : (
