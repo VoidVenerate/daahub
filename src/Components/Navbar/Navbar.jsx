@@ -60,6 +60,26 @@ const Navbar = ({ onSearch }) => {
         </li>
         <li>
           <NavLink
+            to="/category/world"
+            exact="true"
+            className={({ isActive }) => (isActive ? 'navbar-link active' : 'navbar-link')}
+            onClick={() => setMenuOpen(false)}
+          >
+            World
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/category/nation"
+            exact="true"
+            className={({ isActive }) => (isActive ? 'navbar-link active' : 'navbar-link')}
+            onClick={() => setMenuOpen(false)}
+          >
+            Nation
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="/category/health"
             exact="true"
             className={({ isActive }) => (isActive ? 'navbar-link active' : 'navbar-link')}
